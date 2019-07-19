@@ -4,6 +4,7 @@ import ipaddress
 class ObscureIP(ipaddress.IPv4Address):
     def __init__(self, address, auto_obscure=True):
         super().__init__(address)
+        self.obscure_ips = []
         if auto_obscure:
             self.obscure()
 
@@ -59,18 +60,21 @@ class ObscureIP(ipaddress.IPv4Address):
         third_bytes = [third, hex_third, oct_third]
         fourth_bytes = [fourth, hex_fourth, oct_fourth]
         #Let's start printing
-        print(all_int)
-        print(hex(all_int))
-        print(oct(all_int).replace('o', ''))
+        self.obscure_ips.append(str(all_int))
+        self.obscure_ips.append(hex(all_int))
+        self.obscure_ips.append(oct(all_int).replace('o', ''))
         for single_byte_prefix in single_byte_prefixes:
             for three_byte_suffix in three_byte_suffixes:
-                print(f'{single_byte_prefix}.{three_byte_suffix}')
+                _o = f'{single_byte_prefix}.{three_byte_suffix}'
+                self.obscure_ips.append(_o)
         for single_byte_prefix in single_byte_prefixes:
             for second_byte in second_bytes:
                 for two_byte_suffix in two_byte_suffixes:
-                    print(f'{single_byte_prefix}.{second_byte}.{two_byte_suffix}')
+                    _o = f'{single_byte_prefix}.{second_byte}.{two_byte_suffix}'
+                    self.obscure_ips.append(_o)
         for single_byte_prefix in single_byte_prefixes:
             for second_byte in second_bytes:
                 for third_byte in third_bytes:
                     for fourth_byte in fourth_bytes:
-                        print(f'{single_byte_prefix}.{second_byte}.{third_byte}.{fourth_byte}')
+                        _o = f'{single_byte_prefix}.{second_byte}.{third_byte}.{fourth_byte}'
+                        self.obscure_ips.append(_o)
