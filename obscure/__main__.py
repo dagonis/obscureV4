@@ -7,7 +7,7 @@ import obscure
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('ip', help="The IP address you want to obscure.")
+    parser.add_argument('ip', help="The IP address you want to have obscured.")
     parser.add_argument("--payload", help="Payload to insert obscured IP into. Use \I as replacement var.")
     args = parser.parse_args()
     try:
