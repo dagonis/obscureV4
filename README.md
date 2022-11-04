@@ -7,6 +7,12 @@ Absolutely requires Python3.6+, confirmed broken on anything older.
 
 > python3 obscure $IP
 
+You can use --payload to interpolate the obfuscated IPs into a command using \I as the anchor for where you want the IP to be.
+
+```
+python3 obscure $IP --payload "ping -c 4 \I"
+```
+
 ### Example
 
 ```
