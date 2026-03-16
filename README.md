@@ -26,3 +26,31 @@ python3 obscure 216.58.217.206
 0xd8.58.0xd9.0xce
 [...]
 ```
+
+## Using as a Library
+
+Install the package:
+
+```
+pip install -e .
+```
+
+Then import and use `ObscureIP` directly:
+
+```python
+from obscure import ObscureIP
+
+o = ObscureIP("203.0.113.1")
+
+for ip in o.obscure_ips:
+    print(ip)
+```
+
+You can also defer generation with `auto_obscure=False`:
+
+```python
+o = ObscureIP("203.0.113.1", auto_obscure=False)
+# ... do other setup ...
+o.obscure()
+print(o.obscure_ips)
+```
