@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "obscure"
+version = "4.0.0"
+description = "Obscure IPv4 addresses into alternative representations"
+requires-python = ">=3.6"
+
+[project.scripts]
+obscure = "obscure.__main__:main"
