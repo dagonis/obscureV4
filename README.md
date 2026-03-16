@@ -54,3 +54,10 @@ o = ObscureIP("203.0.113.1", auto_obscure=False)
 o.obscure()
 print(o.obscure_ips)
 ```
+
+To get a single random obscured IP (guaranteed not to be the plain dotted-decimal form):
+
+```python
+o = ObscureIP("203.0.113.1")
+print(o.random_ip)  # e.g. '0xcb.0x0.0x71.0x1'
+```
