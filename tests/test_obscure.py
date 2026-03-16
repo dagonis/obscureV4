@@ -81,3 +81,26 @@ class TestObscureIP:
     def test_no_duplicates(self):
         o = ObscureIP("203.0.113.50")
         assert len(o.obscure_ips) == len(set(o.obscure_ips))
+
+
+class TestRandomIP:
+    """Tests for the random_ip property."""
+
+    def test_random_ip_returns_string(self):
+        o = ObscureIP("203.0.113.1")
+        assert isinstance(o.random_ip, str)
+
+    def test_random_ip_is_from_obscure_list(self):
+        o = ObscureIP("203.0.113.1")
+        for _ in range(50):
+            assert o.random_ip in o.obscure_ips
+
+    def test_random_ip_excludes_original_address(self):
+        o = ObscureIP("203.0.113.1")
+        for _ in range(200):
+            assert o.random_ip != "203.0.113.1"
+
+    def test_random_ip_varies(self):
+        o = ObscureIP("203.0.113.1")
+        results = {o.random_ip for _ in range(50)}
+        assert len(results) > 1

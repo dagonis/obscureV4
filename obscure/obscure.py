@@ -1,9 +1,10 @@
 import ipaddress
-
+import random
 
 class ObscureIP(ipaddress.IPv4Address):
     def __init__(self, address, auto_obscure=True):
         super().__init__(address)
+        self.address = address
         self.obscure_ips = []
         if auto_obscure:
             self.obscure()
@@ -78,3 +79,10 @@ class ObscureIP(ipaddress.IPv4Address):
                     for fourth_byte in fourth_bytes:
                         _o = f'{single_byte_prefix}.{second_byte}.{third_byte}.{fourth_byte}'
                         self.obscure_ips.append(_o)
+
+    @property
+    def random_ip(self):
+        choice = random.choice(self.obscure_ips)
+        while choice == self.address:
+            choice = random.choice(self.obscure_ips)
+        return choice
